@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Get Hilal — daily Hijri-date puzzle</title>
+<meta name="description" content="Hilal — a daily Hijri-date puzzle. Get it for your phone." />
+<style>
+  :root { --bg:#0F1B2D; --card:#16263d; --gold:#E0B973; --text:#F4ECDD; --dim:#9bb0c9; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; }
+  body {
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    display:flex; align-items:center; justify-content:center; min-height:100%; padding:24px;
+    text-align:center; -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:360px; }
+  h1 { font-size:22px; letter-spacing:1px; margin:0 0 6px; color:var(--gold); }
+  p { color:var(--dim); margin:0 0 22px; line-height:1.5; font-size:15px; }
+  a.btn {
+    display:block; padding:14px 18px; border-radius:14px; text-decoration:none;
+    font-weight:700; margin:10px 0; background:var(--card); color:var(--text);
+    border:1px solid rgba(224,185,115,.35);
+  }
+  a.btn.primary { background:var(--gold); color:#1a1206; border:none; }
+  .soon { color:var(--dim); font-size:13px; margin-top:14px; }
+  .moon { font-size:34px; margin-bottom:10px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="moon">☾</div>
+    <h1>Hilal</h1>
+    <p>A daily Hijri-date puzzle, with a reflection from the Qur’ān and Sunnah.</p>
+    <div id="links">
+      <!-- Populated by JS per device; static fallback below for no-JS / desktop. -->
+      <a class="btn primary" id="ios" href="https://apps.apple.com/app/id6777826022">Download on the App Store</a>
+      <a class="btn" id="android" href="https://apps.apple.com/app/id6777826022" style="display:none">Get it on Google Play</a>
+      <div class="soon" id="androidSoon" style="display:none">Coming to Google Play soon — grab it on iPhone for now.</div>
+    </div>
+  </div>
+<script>
+  // Single switch: flip to true the moment the Android build is live on Play.
+  // No app update needed — the share link just starts routing Android users to Play.
+  var ANDROID_LIVE = false;
+  var APP_STORE_URL = "https://apps.apple.com/app/id6777826022";
+  var PLAY_URL = "https://play.google.com/store/apps/details?id=com.puzzle.hijri.hilal";
+
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+              (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/.test(ua);
+
+  var ios = document.getElementById("ios");
+  var android = document.getElementById("android");
+  var androidSoon = document.getElementById("androidSoon");
+
+  if (isIOS) {
+    location.replace(APP_STORE_URL);                 // straight to the App Store
+  } else if (isAndroid) {
+    if (ANDROID_LIVE) {
+      android.href = PLAY_URL; android.style.display = "block"; ios.style.display = "none";
+      location.replace(PLAY_URL);
+    } else {
+      ios.style.display = "none";                    // no false "download" on Android yet
+      androidSoon.style.display = "block";
+      android.href = PLAY_URL;                        // harmless until live
+    }
+  } else {
+    // Desktop / other: show the App Store link (and Play once live).
+    if (ANDROID_LIVE) { android.href = PLAY_URL; android.style.display = "block"; }
+    else { androidSoon.style.display = "block"; }
+  }
+</script>
+</body>
+</html>
