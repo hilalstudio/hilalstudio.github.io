@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Hilal Studio — a calm daily Islamic puzzle</title>
+<meta name="description" content="Hilal Studio makes Hilal, a calm daily Hijri-date puzzle. Solve the board, unlock the day's reflection." />
+<link rel="canonical" href="https://hilalstudio.github.io/" />
+<meta property="og:title" content="Hilal Studio" />
+<meta property="og:description" content="Hilal — a calm daily Hijri-date puzzle. Solve the board, unlock the day's reflection." />
+<meta property="og:url" content="https://hilalstudio.github.io/" />
+<meta property="og:type" content="website" />
+<style>
+  :root {
+    --bg:#0F1B2D; --card:#16263d; --gold:#E0B973;
+    --text:#F4ECDD; --dim:#9bb0c9; --line:rgba(224,185,115,.28);
+  }
+  * { box-sizing:border-box; }
+  html,body { margin:0; }
+  body {
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.55;
+    display:flex; flex-direction:column; min-height:100vh; padding:32px 20px;
+  }
+  main { max-width:560px; margin:0 auto; width:100%; flex:1; }
+
+  header { text-align:center; margin-bottom:40px; }
+  .moon { font-size:44px; color:var(--gold); line-height:1; }
+  h1 { font-size:30px; letter-spacing:2px; margin:12px 0 6px; color:var(--gold); font-weight:700; }
+  .tag { color:var(--dim); margin:0; font-size:16px; }
+
+  .lede { font-size:17px; margin:0 0 28px; }
+  h2 { font-size:13px; letter-spacing:1.4px; text-transform:uppercase; color:var(--gold);
+       margin:34px 0 12px; font-weight:700; }
+  ul { margin:0; padding-left:20px; color:var(--dim); }
+  li { margin-bottom:7px; }
+
+  .actions { display:flex; flex-direction:column; gap:10px; margin:28px 0 8px; }
+  a.btn {
+    display:block; padding:14px 18px; border-radius:14px; text-decoration:none;
+    font-weight:700; text-align:center; background:var(--card); color:var(--text);
+    border:1px solid var(--line);
+  }
+  a.btn.primary { background:var(--gold); color:#1a1206; border:none; }
+  a.btn:hover { filter:brightness(1.08); }
+  .note { color:var(--dim); font-size:13px; text-align:center; margin:6px 0 0; }
+
+  footer {
+    max-width:560px; margin:44px auto 0; width:100%;
+    border-top:1px solid rgba(255,255,255,.09); padding-top:20px;
+    color:var(--dim); font-size:13px; text-align:center;
+  }
+  footer a { color:var(--dim); }
+  footer nav { margin-bottom:12px; }
+  footer nav a { margin:0 9px; white-space:nowrap; }
+
+  @media (min-width:600px) {
+    .actions { flex-direction:row; }
+    .actions a.btn { flex:1; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="moon">&#9790;</div>
+    <h1>HILAL</h1>
+    <p class="tag">A calm daily Islamic puzzle</p>
+  </header>
+
+  <p class="lede">
+    Hilal gives you one board a day, tied to the real Hijri calendar. Fit the pieces,
+    complete the pattern, and unlock that day&rsquo;s reflection &mdash; a verse, a hadith,
+    or a short note that moves with the Islamic year.
+  </p>
+
+  <div class="actions">
+    <a class="btn primary" href="https://apps.apple.com/app/id6777826022">Download on the App&nbsp;Store</a>
+    <a class="btn" href="/play/">Play in your browser</a>
+  </div>
+  <p class="note">Coming to Google Play soon.</p>
+
+  <h2>A daily rhythm</h2>
+  <ul>
+    <li>One fresh puzzle every Hijri day</li>
+    <li>A reflection each day &mdash; Qur&rsquo;an, hadith, sirah, and notes for new Muslims</li>
+    <li>Keep a streak from Muharram through Dhul-Hijjah</li>
+  </ul>
+
+  <h2>Quiet by design</h2>
+  <ul>
+    <li>No ads. No account. No noise.</li>
+    <li>Your progress stays on your device</li>
+    <li>Anonymous and privacy-first &mdash; nothing that identifies you</li>
+  </ul>
+</main>
+
+<footer>
+  <nav>
+    <a href="/hilal-privacy/">Privacy</a>
+    <a href="/hilal-privacy/support.html">Support</a>
+    <a href="mailto:hilalhjiri@gmail.com">Contact</a>
+  </nav>
+  <p>
+    Hilal Studio is the app publisher of <strong>Intellekt</strong>, a registered sole
+    trader in Lund, Sweden.
+  </p>
+</footer>
+</body>
+</html>
