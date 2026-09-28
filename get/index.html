@@ -1,60 +1,116 @@
 <!doctype html>
-<!-- Hilal get-link · gameplay solve demo (jewel palette) -->
+<!-- Hilal get-link · store badges first, then the showcase reel, more clips, follow row -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Get Hilal — daily Hijri-date puzzle</title>
-<meta name="description" content="Hilal — a daily Hijri-date puzzle. Get it for your phone." />
+<meta name="description" content="Hilal — a daily Hijri-date puzzle. Free on iPhone and Android." />
 <style>
-  :root { --bg:#0F1B2D; --card:#16263d; --gold:#E0B973; --text:#F4ECDD; --dim:#9bb0c9; }
+  :root { --bg:#0F1B2D; --card:#16263d; --gold:#E0B973; --text:#F4ECDD; --dim:#9bb0c9; --line:rgba(224,185,115,.3); }
   * { box-sizing:border-box; }
   html,body { margin:0; min-height:100%; }
   body {
     background:var(--bg); color:var(--text);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    display:flex; align-items:center; justify-content:center; min-height:100vh; padding:32px 24px;
+    min-height:100vh; padding:28px 16px 36px;
     text-align:center; -webkit-font-smoothing:antialiased;
   }
-  .wrap { max-width:340px; width:100%; }
-  h1 { font-size:23px; letter-spacing:1px; margin:0 0 6px; color:var(--gold); }
-  p { color:var(--dim); margin:0 0 22px; line-height:1.5; font-size:15px; }
-  /* Live gameplay — sits between the description and the buttons. */
-  .demo {
-    width:236px; height:auto; display:block; margin:0 auto 26px;
-    border-radius:22px; border:1px solid rgba(224,185,115,.3);
-    box-shadow:0 18px 44px rgba(0,0,0,.55);
+  /* Phone: one column, badges first. Desktop: text + badges left, reel right. */
+  .wrap {
+    max-width:340px; margin:0 auto;
+    display:grid; grid-template-columns:100%; grid-template-areas:"intro" "hero" "more" "follow";
   }
-  /* Badges hug their content (no dead space on the right), centred and stacked. */
+  .intro { grid-area:intro; }
+  .hero { grid-area:hero; }
+  .more { grid-area:more; }
+  .follow { grid-area:follow; }
+
+  h1 { font-size:24px; letter-spacing:1px; margin:0 0 6px; color:var(--gold); }
+  .lede { color:var(--dim); margin:0 0 20px; line-height:1.5; font-size:15px; }
+
+  /* Official store badge artwork, equal heights, clear space from the gap. */
   .badges { display:flex; flex-direction:column; align-items:center; gap:12px; }
-  a.badge {
-    display:inline-flex; align-items:center; gap:11px; height:58px; padding:0 22px;
-    background:#000; color:#fff; text-decoration:none; text-align:left;
-    border:1px solid rgba(244,236,221,.28); border-radius:12px;
-  }
-  a.badge svg { width:25px; height:25px; flex:none; fill:#fff; }
-  a.badge .lines { display:flex; flex-direction:column; line-height:1.1; }
-  a.badge .pre { font-size:11px; letter-spacing:.3px; opacity:.85; }
-  a.badge .store { font-size:18px; font-weight:700; letter-spacing:.2px; white-space:nowrap; }
+  .badges a { display:block; line-height:0; border-radius:9px; }
+  .badges img { height:52px; width:auto; display:block; }
+  .badges a:hover { filter:brightness(1.15); }
+  .free { color:var(--dim); font-size:13px; margin:12px 0 0; }
   .soon { color:var(--dim); font-size:13px; margin-top:6px; }
+
+  video { display:block; background:#0a1422; }
+  .hero video {
+    width:236px; aspect-ratio:9/16; height:auto; margin:28px auto 0;
+    border-radius:22px; border:1px solid var(--line); box-shadow:0 18px 44px rgba(0,0,0,.55);
+  }
+
+  h2 { font-size:12px; letter-spacing:1.4px; text-transform:uppercase; color:var(--gold); margin:32px 0 12px; font-weight:700; }
+  .reels { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
+  .reels video { width:100%; aspect-ratio:9/16; height:auto; border-radius:12px; border:1px solid var(--line); }
+
+  .follow p { color:var(--dim); font-size:14px; margin:-4px 0 14px; }
+  .social { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
+  .social a {
+    display:inline-flex; align-items:center; gap:7px; padding:9px 14px; border-radius:999px;
+    color:var(--text); text-decoration:none; font-size:14px; font-weight:600;
+    background:var(--card); border:1px solid var(--line);
+  }
+  .social a:hover { border-color:var(--gold); }
+  .social svg { width:17px; height:17px; fill:var(--gold); flex:none; }
+
+  @media (min-width:880px) {
+    body { display:flex; align-items:center; justify-content:center; padding:48px 32px; }
+    .wrap {
+      max-width:760px; width:100%; column-gap:64px; text-align:left;
+      grid-template-columns:1fr 300px; grid-template-areas:"intro hero" "follow hero" "more more";
+      align-items:start;
+    }
+    .intro { align-self:end; }
+    h1 { font-size:34px; }
+    .lede { font-size:17px; margin-bottom:26px; }
+    .badges { align-items:flex-start; }
+    .hero video { width:300px; margin:0; }
+    .social { justify-content:flex-start; }
+    .more h2 { text-align:center; }
+    .reels { max-width:520px; margin:0 auto; gap:14px; }
+  }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>Hilal</h1>
-    <p>A daily Hijri-date puzzle, with a reflection from the Qur’ān and Sunnah.</p>
-    <img class="demo" src="./hilal-play.gif" alt="Solving a Hilal puzzle — jewel-coloured pieces fill the Hijri calendar, ending on the day's reflection." width="236" />
-    <div class="badges" id="badges">
-      <a class="badge" id="ios" href="https://apps.apple.com/app/id6777826022">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.03 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-        <span class="lines"><span class="pre">Download on the</span><span class="store">App Store</span></span>
-      </a>
-      <a class="badge" id="android" href="https://play.google.com/store/apps/details?id=com.puzzle.hijri.hilal">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
-        <span class="lines"><span class="pre">GET IT ON</span><span class="store">Google Play</span></span>
-      </a>
-      <div class="soon" id="androidSoon" style="display:none">Coming to Google Play soon — grab it on iPhone for now.</div>
-    </div>
+    <section class="intro">
+      <h1>Hilal</h1>
+      <p class="lede">A daily Hijri-date puzzle, with a reflection from the Qur’ān and Sunnah.</p>
+      <div class="badges" id="badges">
+        <a id="ios" href="https://apps.apple.com/app/id6777826022"><img src="./media/app-store-badge.svg" alt="Download on the App Store" width="175" height="52" /></a>
+        <a id="android" href="https://play.google.com/store/apps/details?id=com.puzzle.hijri.hilal"><img src="./media/google-play-badge.png" alt="Get it on Google Play" width="175" height="52" /></a>
+        <div class="soon" id="androidSoon" style="display:none">Coming to Google Play soon — grab it on iPhone for now.</div>
+      </div>
+      <p class="free">Free on iPhone, iPad and Android.</p>
+    </section>
+
+    <section class="hero">
+      <video src="./media/hilal-showcase.mp4" poster="./media/hilal-showcase.jpg" width="236" height="420"
+        autoplay muted loop playsinline preload="auto" aria-label="How Hilal works: place all eight pieces so only today's Hijri date stays uncovered."></video>
+    </section>
+
+    <section class="more">
+      <h2>More from Hilal</h2>
+      <div class="reels">
+        <video class="lazy" data-src="./media/reel-snap.mp4" poster="./media/reel-snap.jpg" muted loop playsinline preload="none" aria-label="Pieces snapping into place on the board."></video>
+        <video class="lazy" data-src="./media/reel-themes.mp4" poster="./media/reel-themes.jpg" muted loop playsinline preload="none" aria-label="The same puzzle in four board themes."></video>
+        <video class="lazy" data-src="./media/reel-solutions.mp4" poster="./media/reel-solutions.jpg" muted loop playsinline preload="none" aria-label="How many ways each date can be solved."></video>
+      </div>
+    </section>
+
+    <section class="follow">
+      <h2>Follow Hilal</h2>
+      <p>New puzzle clips and reminders.</p>
+      <div class="social">
+        <a href="https://www.youtube.com/@hilalpuzzle" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>YouTube</a>
+        <a href="https://www.instagram.com/hilalpuzzle/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>Instagram</a>
+        <a href="https://www.tiktok.com/@hilalpuzzle" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a>
+      </div>
+    </section>
   </div>
 <script>
   var ANDROID_LIVE = true;
@@ -66,6 +122,20 @@
   if (!ANDROID_LIVE) { android.style.display = "none"; androidSoon.style.display = "block"; }
   else if (isIOS) { badges.insertBefore(ios, android); }
   else if (isAndroid) { badges.insertBefore(android, ios); }
+
+  // The small clips load and play only while on screen.
+  (function () {
+    var clips = [].slice.call(document.querySelectorAll("video.lazy"));
+    function start(v) {
+      if (!v.src) v.src = v.getAttribute("data-src");
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    }
+    if (!("IntersectionObserver" in window)) { clips.forEach(start); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) start(e.target); else e.target.pause(); });
+    }, { rootMargin: "120px" });
+    clips.forEach(function (v) { io.observe(v); });
+  })();
 </script>
 
 <!-- hilal-analytics:start -->
@@ -92,6 +162,9 @@
     if (!a) return;
     if (/apps\.apple\.com/.test(a.href)) window.hilalPing("install_ios");
     else if (/play\.google\.com/.test(a.href)) window.hilalPing("install_android");
+    else if (/youtube\.com\/@hilalpuzzle/.test(a.href)) window.hilalPing("follow_yt");
+    else if (/instagram\.com\/hilalpuzzle/.test(a.href)) window.hilalPing("follow_ig");
+    else if (/tiktok\.com\/@hilalpuzzle/.test(a.href)) window.hilalPing("follow_tt");
   }, true);
 })();
 </script>
