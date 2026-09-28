@@ -32,7 +32,7 @@
     </noscript>
     <!-- The root element for your Expo app. -->
     <div id="root"></div>
-  <script src="/play/_expo/static/js/web/index-9d825eae40bf1140abad93db1b1b0704.js" defer></script>
+  <script src="/play/_expo/static/js/web/index-71dc29e691233e54a4021baf16cf4534.js" defer></script>
 
 <!-- hilal-analytics:start -->
 <script>
@@ -58,6 +58,9 @@
     if (!a) return;
     if (/apps\.apple\.com/.test(a.href)) window.hilalPing("install_ios");
     else if (/play\.google\.com/.test(a.href)) window.hilalPing("install_android");
+    else if (/youtube\.com\/@hilalpuzzle/.test(a.href)) window.hilalPing("follow_yt");
+    else if (/instagram\.com\/hilalpuzzle/.test(a.href)) window.hilalPing("follow_ig");
+    else if (/tiktok\.com\/@hilalpuzzle/.test(a.href)) window.hilalPing("follow_tt");
   }, true);
 })();
 </script>
