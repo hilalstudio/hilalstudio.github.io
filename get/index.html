@@ -67,5 +67,28 @@
   else if (isIOS) { badges.insertBefore(ios, android); }
   else if (isAndroid) { badges.insertBefore(android, ios); }
 </script>
+
+<!-- hilal-analytics:start -->
+<script>
+(function () {
+  // Analytics must never break the page, so every step swallows its own errors.
+  var PAGE = "get", URL = "https://hilal-api.smaverk.com/p", src = "";
+  try { src = (new URLSearchParams(location.search).get("src") || "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 16); } catch (e) {}
+  window.hilalSrc = src || "direct";
+  window.hilalPing = function (ev) {
+    try { if (navigator.sendBeacon) navigator.sendBeacon(URL, JSON.stringify({ e: ev, p: PAGE, s: window.hilalSrc })); } catch (e) {}
+  };
+  var key = "hilal-visit-" + PAGE, seen = null;
+  try { seen = sessionStorage.getItem(key); sessionStorage.setItem(key, "1"); } catch (e) {}
+  if (!seen) window.hilalPing("visit");
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    if (/apps\.apple\.com/.test(a.href)) window.hilalPing("install_ios");
+    else if (/play\.google\.com/.test(a.href)) window.hilalPing("install_android");
+  }, true);
+})();
+</script>
+<!-- hilal-analytics:end -->
 </body>
 </html>
