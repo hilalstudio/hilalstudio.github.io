@@ -1,0 +1,132 @@
+/* hilal.css: the ONE stylesheet for the static pages of hilalstudio.github.io.
+ *
+ *   /      ← marketing/site/index.html
+ *   /get/  ← marketing/install-redirect/index.html
+ *
+ * Both pages link /hilal.css and carry no <style> of their own; every design
+ * change (colours, type, badges, layout, footer) goes here so the pages cannot
+ * drift apart again. analytics/publish-site.ts copies it to the site root and
+ * versions the link; analytics/site-design.test.ts fails if a page stops
+ * linking it or redefines a token. /play is the Expo build and has its own UI.
+ *
+ * Layout (the /get showcase design, 2026-09-28): phone = one centred column,
+ * intro + store badges first, then the hero clip, more, follow, footer.
+ * Desktop ≥ 880px = intro + badges + follow on the left, hero on the right,
+ * "more" full width underneath.
+ */
+:root {
+  --bg: #0F1B2D;
+  --card: #16263d;
+  --gold: #E0B973;
+  --text: #F4ECDD;
+  --dim: #9bb0c9;
+  --line: rgba(224, 185, 115, .3);
+  --rule: rgba(255, 255, 255, .09);
+  --media-bg: #0a1422;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --radius-media: 22px;
+  --radius-clip: 12px;
+  --badge-h: 52px;
+  --col: 340px;
+  --col-wide: 760px;
+  /* The brand is night-sky navy and gold in both OS modes. */
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font); line-height: 1.5;
+  min-height: 100vh; padding: 28px 16px 36px;
+  text-align: center; -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+
+.wrap {
+  max-width: var(--col); margin: 0 auto;
+  display: grid; grid-template-columns: 100%;
+  grid-template-areas: "intro" "hero" "more" "follow";
+}
+.intro { grid-area: intro; }
+.hero { grid-area: hero; }
+.more { grid-area: more; }
+.follow { grid-area: follow; }
+
+/* Brand header: crescent mark, wordmark, lede. */
+.mark { font-size: 34px; line-height: 1; color: var(--gold); margin: 0 0 8px; }
+h1 { font-size: 24px; letter-spacing: 1px; margin: 0 0 6px; color: var(--gold); }
+.lede { color: var(--dim); margin: 0 0 20px; font-size: 15px; }
+
+/* Official store badge artwork, equal heights. */
+.badges { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.badges a { display: block; line-height: 0; border-radius: 9px; }
+.badges img { height: var(--badge-h); width: auto; display: block; }
+.badges a:hover { filter: brightness(1.15); }
+.free, .soon { color: var(--dim); font-size: 13px; }
+.free { margin: 12px 0 0; }
+.soon { margin-top: 6px; }
+
+/* Hero clip or demo: phone-shaped, framed in gold. */
+.hero video, .hero img {
+  display: block; background: var(--media-bg);
+  width: 236px; max-width: 100%; height: auto; margin: 28px auto 0;
+  border-radius: var(--radius-media); border: 1px solid var(--line);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .55);
+}
+.hero video { aspect-ratio: 9 / 16; }
+
+h2 { font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--gold); margin: 32px 0 12px; font-weight: 700; }
+
+/* "More" on /get: three short clips. */
+.reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.reels video { display: block; background: var(--media-bg); width: 100%; aspect-ratio: 9 / 16; height: auto; border-radius: var(--radius-clip); border: 1px solid var(--line); }
+
+/* "More" on /: short point lists. */
+.points { display: grid; gap: 0 28px; text-align: left; }
+.points ul { margin: 0; padding-left: 20px; color: var(--dim); font-size: 15px; }
+.points li { margin-bottom: 7px; }
+.points h2 { text-align: center; }
+
+/* Follow row. */
+.follow p { color: var(--dim); font-size: 14px; margin: -4px 0 14px; }
+.social { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.social a {
+  display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px; border-radius: 999px;
+  color: var(--text); text-decoration: none; font-size: 14px; font-weight: 600;
+  background: var(--card); border: 1px solid var(--line);
+}
+.social a:hover { border-color: var(--gold); }
+.social svg { width: 17px; height: 17px; fill: var(--gold); flex: none; }
+
+/* Footer: the same on every page. */
+footer {
+  max-width: var(--col); margin: 44px auto 0;
+  border-top: 1px solid var(--rule); padding-top: 20px;
+  color: var(--dim); font-size: 13px;
+}
+footer a { color: var(--dim); }
+footer nav { margin-bottom: 12px; }
+footer nav a { margin: 0 9px; white-space: nowrap; }
+footer p { margin: 0; }
+
+@media (min-width: 880px) {
+  body { padding: 48px 32px; }
+  .wrap {
+    max-width: var(--col-wide); column-gap: 64px; text-align: left;
+    grid-template-columns: 1fr 300px; grid-template-areas: "intro hero" "follow hero" "more more";
+    align-items: start;
+  }
+  .intro { align-self: end; }
+  .mark { font-size: 40px; }
+  h1 { font-size: 34px; }
+  .lede { font-size: 17px; margin-bottom: 26px; }
+  .badges { align-items: flex-start; }
+  .hero video, .hero img { width: 300px; margin: 0; }
+  .social { justify-content: flex-start; }
+  .more h2 { text-align: center; }
+  .reels { max-width: 520px; margin: 0 auto; gap: 14px; }
+  .points { grid-template-columns: 1fr 1fr; }
+  .points h2 { text-align: left; }
+  footer { max-width: var(--col-wide); }
+}

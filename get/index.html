@@ -8,74 +8,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <title>Get Hilal: the daily Hijri date puzzle for iPhone and Android</title>
-<style>
-  :root { --bg:#0F1B2D; --card:#16263d; --gold:#E0B973; --text:#F4ECDD; --dim:#9bb0c9; --line:rgba(224,185,115,.3); }
-  * { box-sizing:border-box; }
-  html,body { margin:0; min-height:100%; }
-  body {
-    background:var(--bg); color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    min-height:100vh; padding:28px 16px 36px;
-    text-align:center; -webkit-font-smoothing:antialiased;
-  }
-  /* Phone: one column, badges first. Desktop: text + badges left, reel right. */
-  .wrap {
-    max-width:340px; margin:0 auto;
-    display:grid; grid-template-columns:100%; grid-template-areas:"intro" "hero" "more" "follow";
-  }
-  .intro { grid-area:intro; }
-  .hero { grid-area:hero; }
-  .more { grid-area:more; }
-  .follow { grid-area:follow; }
-
-  h1 { font-size:24px; letter-spacing:1px; margin:0 0 6px; color:var(--gold); }
-  .lede { color:var(--dim); margin:0 0 20px; line-height:1.5; font-size:15px; }
-
-  /* Official store badge artwork, equal heights, clear space from the gap. */
-  .badges { display:flex; flex-direction:column; align-items:center; gap:12px; }
-  .badges a { display:block; line-height:0; border-radius:9px; }
-  .badges img { height:52px; width:auto; display:block; }
-  .badges a:hover { filter:brightness(1.15); }
-  .free { color:var(--dim); font-size:13px; margin:12px 0 0; }
-  .soon { color:var(--dim); font-size:13px; margin-top:6px; }
-
-  video { display:block; background:#0a1422; }
-  .hero video {
-    width:236px; aspect-ratio:9/16; height:auto; margin:28px auto 0;
-    border-radius:22px; border:1px solid var(--line); box-shadow:0 18px 44px rgba(0,0,0,.55);
-  }
-
-  h2 { font-size:12px; letter-spacing:1.4px; text-transform:uppercase; color:var(--gold); margin:32px 0 12px; font-weight:700; }
-  .reels { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
-  .reels video { width:100%; aspect-ratio:9/16; height:auto; border-radius:12px; border:1px solid var(--line); }
-
-  .follow p { color:var(--dim); font-size:14px; margin:-4px 0 14px; }
-  .social { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
-  .social a {
-    display:inline-flex; align-items:center; gap:7px; padding:9px 14px; border-radius:999px;
-    color:var(--text); text-decoration:none; font-size:14px; font-weight:600;
-    background:var(--card); border:1px solid var(--line);
-  }
-  .social a:hover { border-color:var(--gold); }
-  .social svg { width:17px; height:17px; fill:var(--gold); flex:none; }
-
-  @media (min-width:880px) {
-    body { display:flex; align-items:center; justify-content:center; padding:48px 32px; }
-    .wrap {
-      max-width:760px; width:100%; column-gap:64px; text-align:left;
-      grid-template-columns:1fr 300px; grid-template-areas:"intro hero" "follow hero" "more more";
-      align-items:start;
-    }
-    .intro { align-self:end; }
-    h1 { font-size:34px; }
-    .lede { font-size:17px; margin-bottom:26px; }
-    .badges { align-items:flex-start; }
-    .hero video { width:300px; margin:0; }
-    .social { justify-content:flex-start; }
-    .more h2 { text-align:center; }
-    .reels { max-width:520px; margin:0 auto; gap:14px; }
-  }
-</style>
+<link rel="stylesheet" href="/hilal.css?v=3133e721de" />
 <!-- hilal-seo:start -->
 <meta name="google-site-verification" content="jiukaeQ7TKQc0-YEeKS0uz61TJETbtvnB2AgdEInwXY" />
 <meta name="description" content="Hilal is a daily puzzle about the Islamic (Hijri) calendar. Free on iPhone and Android." />
@@ -94,6 +27,7 @@
 <body>
   <div class="wrap">
     <section class="intro">
+      <div class="mark" aria-hidden="true">&#9790;</div>
       <h1>Hilal</h1>
       <p class="lede">A daily Hijri-date puzzle, with a reflection from the Qur’ān and Sunnah.</p>
       <div class="badges" id="badges">
@@ -128,6 +62,18 @@
       </div>
     </section>
   </div>
+
+<footer>
+  <nav>
+    <a href="/hilal-privacy/">Privacy</a>
+    <a href="/hilal-privacy/support.html">Support</a>
+    <a href="mailto:hilalhjiri@gmail.com">Contact</a>
+  </nav>
+  <p>
+    Hilal Studio is the app publisher of <strong>Intellekt</strong>, a registered sole
+    trader in Lund, Sweden.
+  </p>
+</footer>
 <script>
   var ANDROID_LIVE = true;
   var ua = navigator.userAgent || "";
